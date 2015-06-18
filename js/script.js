@@ -17,7 +17,7 @@ $(document).on("pagecreate", "#home", function() {
 
 			for (i; i < runs.length; i++) {
 				$('#stats').append(
-					'<li class="ui-body-inherit ui-li-static"><strong>Date: </strong>' + runs[i]["date"] + 
+					'<li class="original ui-body-inherit ui-li-static"><strong>Date: </strong>' + runs[i]["date"] + 
 					'<strong> <br/>Distnace: </strong>' + runs[i]["kms"] + 
 					'km<div class="controls">'+
 					'<a href="#edit">Edit</a> | '+
@@ -57,8 +57,12 @@ $(document).on("pagecreate", "#home", function() {
 		localStorage.setItem('runs', JSON.stringify(runs));
 
 		//Redirect
-		$("body").pagecontainer("change", "#home", { transition: "none" });
-
+		$("body").pagecontainer("change", "#home", { transition: "fade"});
+		
+		//Show Runs Again
+		$('.original').hide();
+		showRuns();
+		
 		//Preventing form from submiting
 		return false;
 	}
