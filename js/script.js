@@ -9,7 +9,7 @@ $(document).on("pagecreate", "#home", function() {
 	$('#submitEdit').on('tap', editRun);
 
 	//setCurrent handler
-	$('#stats').on('tap', #editLink, setCurrent);
+	$('#stats').on('tap', '#editLink', setCurrent);
 
 
 	/*
@@ -131,6 +131,7 @@ $(document).on("pagecreate", "#home", function() {
 		localStorage.setItem('currentKms', $(this).data('kms'));
 		localStorage.setItem('currentDate', $(this).data('date'));
 		
+		//Get data
 		var kms = localStorage.getItem('currentKms');
 		var date = localStorage.getItem('currentDate');
 		
