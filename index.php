@@ -69,7 +69,9 @@
 					<input type="number" id="addKm" >
 					<label for="km">Enter Date:</label>
 					<input type="date" data-role="date" class="date" id="addKm" data-inline="true" >
-					<button id="submitAdd" class="ui-btn ui-corner-all">Add Run</button>
+					<button id="submitAdd" class="ui-btn ui-corner-all">
+						Add Run
+					</button>
 				</form>
 			</div>
 			<footer data-role="footer">
