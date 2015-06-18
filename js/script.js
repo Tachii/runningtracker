@@ -2,11 +2,15 @@ $(document).on("pagecreate", "#home", function() {
 	//Display runs
 	showRuns();
 
-	//Handler for Adding Runs
+	//Add Handler
 	$('#submitAdd').on('tap', addRun);
 
-	//Handler for Editing Runs
+	//Edit Handler
 	$('#submitEdit').on('tap', editRun);
+
+	//setCurrent handler
+	$('#stats').on('tap', #editLink, setCurrent);
+
 
 	/*
 	 * Show all runs on homepage
@@ -118,5 +122,21 @@ $(document).on("pagecreate", "#home", function() {
 		});
 
 	}
-
+	
+	/*
+	 * Set current data of clicked element(date and kms)
+	 */
+	function setCurrent(){
+		//Set localStorage items for clicked element
+		localStorage.setItem('currentKms', $(this).data('kms'));
+		localStorage.setItem('currentDate', $(this).data('date'));
+		
+		var kms = localStorage.getItem('currentKms');
+		var date = localStorage.getItem('currentDate');
+		
+		//Insert data into edit form
+		$('#editKms').val(kms);
+		$('#editDate').val(date);
+	}
+	
 });
