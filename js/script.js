@@ -1,4 +1,5 @@
 $(document).on("pagecreate", "#home", function() {
+
 	//Display runs
 	showRuns();
 
@@ -9,8 +10,7 @@ $(document).on("pagecreate", "#home", function() {
 	$('#submitEdit').on('tap', editRun);
 
 	//setCurrent handler
-	$('#stats').on('tap', '#editLink', setCurrent);
-
+	$('#editLink').on('tap', setCurrent);
 
 	/*
 	 * Show all runs on homepage
@@ -122,22 +122,22 @@ $(document).on("pagecreate", "#home", function() {
 		});
 
 	}
-	
+
 	/*
 	 * Set current data of clicked element(date and kms)
 	 */
-	function setCurrent(){
+	function setCurrent() {
 		//Set localStorage items for clicked element
 		localStorage.setItem('currentKms', $(this).data('kms'));
 		localStorage.setItem('currentDate', $(this).data('date'));
-		
+
 		//Get data
 		var kms = localStorage.getItem('currentKms');
 		var date = localStorage.getItem('currentDate');
-		
+
 		//Insert data into edit form
 		$('#editKms').val(kms);
 		$('#editDate').val(date);
 	}
-	
+
 });
