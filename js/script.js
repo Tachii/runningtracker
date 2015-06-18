@@ -4,28 +4,24 @@ $(document).on("pagecreate", "#home", function() {
 	$('#home').on("tap", redirectHome);
 	$('#editRun').on("tap", redirectEdit);
 
-
 	//Function to Redirect to home page
 	function redirectHome() {
 		$("body").pagecontainer("change", "#home", {
-			transition : "fade",
-			reloadPage: true
+			transition : "fade"
 		});
 	}
 
 	//Function to Redirect to add page
 	function redirectAdd() {
 		$("body").pagecontainer("change", "#add", {
-			transition : "fade",
-			reloadPage: true
+			transition : "fade"
 		});
 	}
 
 	//Function to Redirect to edit page
 	function redirectEdit() {
 		$("body").pagecontainer("change", "#edit", {
-			transition : "fade",
-			reloadPage: true
+			transition : "fade"
 		});
 	}
 
