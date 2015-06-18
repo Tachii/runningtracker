@@ -1,4 +1,4 @@
-$(document).one('pageinit', function() {
+$(document).on('pageinit', function() {
 	//Display runs
 	showRuns();
 
@@ -16,7 +16,11 @@ $(document).one('pageinit', function() {
 		if (runs != '' && runs != null) {
 
 			for (i; i < runs.length; i++) {
-				$('#stats').append('<li class="ui-body-inherit ui-li-static"><strong>Date: </strong>' + runs[i]["date"] + '<strong> <br/>Distnace: </strong>' + runs[i]["kms"] + 'km</li>');
+				$('#stats').append(
+					'<li class="ui-body-inherit ui-li-static"><strong>Date: </strong>' + runs[i]["date"] + 
+					'<strong> <br/>Distnace: </strong>' + runs[i]["kms"] + 
+					'km<div class="controls"></div></li>'
+				);
 			}
 
 			$('#home').bind('pageinit', function() {
@@ -50,7 +54,7 @@ $(document).one('pageinit', function() {
 		localStorage.setItem('runs', JSON.stringify(runs));
 
 		//Redirect
-		window.location.href = "index.php";
+		$("body").pagecontainer("change", "#home", { transition: "none" });
 
 		//Preventing form from submiting
 		return false;
