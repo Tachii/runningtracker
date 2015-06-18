@@ -26,10 +26,6 @@ $(document).on("pagecreate", "#home", function() {
 				);
 			}
 
-			$('#home').bind('pageinit', function() {
-				$('#stats').listview('refresh');
-			});
-
 		}
 	}
 
