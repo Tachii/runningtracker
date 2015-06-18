@@ -20,7 +20,7 @@ $(document).on("pagecreate", "#home", function() {
 					'<li class="original ui-body-inherit ui-li-static"><strong>Date: </strong>' + runs[i]["date"] + 
 					'<strong> <br/>Distnace: </strong>' + runs[i]["kms"] + 
 					'km<div class="controls">'+
-					'<a href="#edit">Edit</a> | '+
+					'<a href="#edit" id="editLink" data-kms="'+ runs[i]["kms"] +'" data-date="'+ runs[i]["date"] +'">Edit</a> | '+
 					'<a href="#delete">Delete</a>'+
 					'</div></li>'
 				);
