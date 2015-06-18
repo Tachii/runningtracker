@@ -1,4 +1,4 @@
-$(document).one('pageinit', function() {
+$(document).on('pageinit', function() {
 	//Display runs
 	showRuns();
 
@@ -11,11 +11,18 @@ $(document).one('pageinit', function() {
 	function showRuns() {
 		//get runs Object
 		var runs = getRunsObject();
-		var i;
+		var i = 0;
+
 		if (runs != '' && runs != null) {
-			for(i = 0; i < runs.lengts; i++){
-				
-			}		
+
+			for (i; i < runs.length; i++) {
+				$('#stats').append('<li class="ui-body-inherit ui-li-static"><strong>Date: </strong>' + runs[i]["date"] + '</li>');
+			}
+
+			$('#home').bind('pageinit', function() {
+				$('#stats').listview('refresh');
+			});
+
 		}
 	}
 

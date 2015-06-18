@@ -35,6 +35,10 @@
 				</p>
 
 				<h3>Your Latest Runs:</h3>
+				
+				<ul id="stats">
+					
+				</ul>
 
 				<ul id="stats" data-role="listview" data-filter="true" data-filter-placeholder="Filter runs by date or distance." data-inset="true" ></ul>
 				<br/>
