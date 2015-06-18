@@ -66,9 +66,9 @@
 				<h3>Add Run</h3>
 				<form id="addForm">
 					<label for="km">Enter Kilometres:</label>
-					<input type="number" id="addKm" >
+					<input type="number" id="addKms" >
 					<label for="km">Enter Date:</label>
-					<input type="date" data-role="date" class="date" id="addKm" data-inline="true" >
+					<input type="date" data-role="date" class="date" id="addDate" data-inline="true" >
 					<button id="submitAdd" class="ui-btn ui-corner-all">
 						Add Run
 					</button>
