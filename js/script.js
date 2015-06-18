@@ -1,16 +1,33 @@
 $(document).on("pagecreate", "#home", function() {
+	//Redirections
+	$('#addRun').on("tap", redirectAdd);
+	$('#home').on("tap", redirectHome);
+	$('#editRun').on("tap", redirectEdit);
 
-	//Display runs
-	showRuns();
 
-	//Add Handler
-	$('#submitAdd').on('tap', addRun);
+	//Function to Redirect to home page
+	function redirectHome() {
+		$("body").pagecontainer("change", "#home", {
+			transition : "fade",
+			reloadPage: true
+		});
+	}
 
-	//Edit Handler
-	$('#submitEdit').on('tap', editRun);
+	//Function to Redirect to add page
+	function redirectAdd() {
+		$("body").pagecontainer("change", "#add", {
+			transition : "fade",
+			reloadPage: true
+		});
+	}
 
-	//setCurrent handler
-	$('#editLink').on('tap', setCurrent);
+	//Function to Redirect to edit page
+	function redirectEdit() {
+		$("body").pagecontainer("change", "#edit", {
+			transition : "fade",
+			reloadPage: true
+		});
+	}
 
 	/*
 	 * Show all runs on homepage
@@ -23,7 +40,7 @@ $(document).on("pagecreate", "#home", function() {
 		if (runs != '' && runs != null) {
 
 			for (i; i < runs.length; i++) {
-				$('#stats').append('<li class="original ui-body-inherit ui-li-static"><strong>Date: </strong>' + runs[i]["date"] + '<strong> <br/>Distnace: </strong>' + runs[i]["kms"] + 'km<div class="controls">' + '<a href="#edit" id="editLink" data-kms="' + runs[i]["kms"] + '" data-date="' + runs[i]["date"] + '">Edit</a> | ' + '<a href="#delete">Delete</a>' + '</div></li>');
+				$('#stats').append('<li class="original ui-body-inherit ui-li-static"><strong>Date: </strong>' + runs[i]["date"] + '<strong> <br/>Distnace: </strong>' + runs[i]["kms"] + 'km<div class="controls">' + '<a href="#" id="editLink" data-kms="' + runs[i]["kms"] + '" data-date="' + runs[i]["date"] + '">Edit</a> | ' + '<a href="#" id="deleteLink" data-kms="' + runs[i]["kms"] + '" data-date="' + runs[i]["date"] + '">Delete</a>' + '</div></li>');
 			}
 
 		}
@@ -75,15 +92,15 @@ $(document).on("pagecreate", "#home", function() {
 
 		var runs = getRunsObject();
 		var i = 0;
-		
+
 		//Loop throuh runs and remove current run from 'runs' object
-		while(i < runs.length){
+		while (i < runs.length) {
 			//Remove Current Run
-			if(runs[i].kms == currentKms && runs[i].date == currentDate){
-				runs.splice(i,1);
+			if (runs[i].kms == currentKms && runs[i].date == currentDate) {
+				runs.splice(i, 1);
 			}
 			//Save array without current run
-			localStorage.setItem('runs',JSON.stringify(runs));
+			localStorage.setItem('runs', JSON.stringify(runs));
 			i++;
 		}
 
@@ -115,6 +132,40 @@ $(document).on("pagecreate", "#home", function() {
 
 		//Preventing form from submiting
 		return false;
+	}
+
+	/*
+	 * deleteRun function
+	 */
+	function deleteRun() {
+		//Get Current Data
+		var currentKms = localStorage.getItem('currentKms');
+		var currentDate = localStorage.getItem('currentDate');
+
+		var runs = getRunsObject();
+		var i = 0;
+
+		//Loop throuh runs and remove current run from 'runs' object
+		while (i < runs.length) {
+			//Remove Current Run
+			if (runs[i].kms == currentKms && runs[i].date == currentDate) {
+				runs.splice(i, 1);
+				alert('Run Deleted');
+			} else {
+				alert('Run cant be deleted!');
+			}
+			//Save array without current run
+			localStorage.setItem('runs', JSON.stringify(runs));
+			i++;
+		}
+
+		//Show Runs Again
+		$('.original').hide();
+		showRuns();
+
+		//Preventing form from submiting
+		return false;
+
 	}
 
 	/*

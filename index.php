@@ -20,15 +20,11 @@
 			<div data-role="navbar">
 				<ul>
 					<li>
-						<a href="#home" data-transition="none" data-icon="home">Home</a>
-					</li>
-
-					<li>
 						<a href="#start" data-transition="none" data-icon="star">Start Run</a>
 					</li>
 
 					<li>
-						<a href="#add" data-transition="none" data-icon="plus">Add Run</a>
+						<a href="#" id="addRun" data-transition="none" data-icon="plus">Add Run</a>
 					</li>
 				</ul>
 			</div>
@@ -58,7 +54,7 @@
 			<div data-role="navbar">
 				<ul>
 					<li>
-						<a href="#home" data-transition="none" data-icon="home">Home</a>
+						<a href="#" id="#home" data-transition="none" data-icon="home">Home</a>
 					</li>
 				</ul>
 			</div>
