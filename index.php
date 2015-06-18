@@ -24,6 +24,10 @@
 					</li>
 
 					<li>
+						<a href="#start" data-transition="none" data-icon="star">Start Run</a>
+					</li>
+
+					<li>
 						<a href="#add" data-transition="none" data-icon="plus">Add Run</a>
 					</li>
 				</ul>
