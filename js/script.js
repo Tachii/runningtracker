@@ -2,8 +2,11 @@ $(document).on("pagecreate", "#home", function() {
 	//Display runs
 	showRuns();
 
-	//Add Handler for Adding Runs
+	//Handler for Adding Runs
 	$('#submitAdd').on('tap', addRun);
+
+	//Handler for Editing Runs
+	$('#submitEdit').on('tap', editRun);
 
 	/*
 	 * Show all runs on homepage
@@ -16,14 +19,7 @@ $(document).on("pagecreate", "#home", function() {
 		if (runs != '' && runs != null) {
 
 			for (i; i < runs.length; i++) {
-				$('#stats').append(
-					'<li class="original ui-body-inherit ui-li-static"><strong>Date: </strong>' + runs[i]["date"] + 
-					'<strong> <br/>Distnace: </strong>' + runs[i]["kms"] + 
-					'km<div class="controls">'+
-					'<a href="#edit" id="editLink" data-kms="'+ runs[i]["kms"] +'" data-date="'+ runs[i]["date"] +'">Edit</a> | '+
-					'<a href="#delete">Delete</a>'+
-					'</div></li>'
-				);
+				$('#stats').append('<li class="original ui-body-inherit ui-li-static"><strong>Date: </strong>' + runs[i]["date"] + '<strong> <br/>Distnace: </strong>' + runs[i]["kms"] + 'km<div class="controls">' + '<a href="#edit" id="editLink" data-kms="' + runs[i]["kms"] + '" data-date="' + runs[i]["date"] + '">Edit</a> | ' + '<a href="#delete">Delete</a>' + '</div></li>');
 			}
 
 		}
@@ -53,12 +49,50 @@ $(document).on("pagecreate", "#home", function() {
 		localStorage.setItem('runs', JSON.stringify(runs));
 
 		//Redirect
-		$("body").pagecontainer("change", "#home", { transition: "fade"});
-		
+		$("body").pagecontainer("change", "#home", {
+			transition : "fade"
+		});
+
 		//Show Runs Again
 		$('.original').hide();
 		showRuns();
-		
+
+		//Preventing form from submiting
+		return false;
+	}
+
+	/*
+	 * editRun function
+	 */
+	function editRun() {
+		//Get form values
+		var kms = $('#addKms').val();
+		var date = $('#addDate').val();
+
+		//Create 'Run' Object
+		var run = {
+			date : date,
+			kms : parseFloat(kms)
+		};
+
+		var runs = getRunsObject();
+
+		//Add run to runs array
+		runs.push(run);
+		alert('Run Added');
+
+		//Set stringified objects to localstorage
+		localStorage.setItem('runs', JSON.stringify(runs));
+
+		//Redirect
+		$("body").pagecontainer("change", "#home", {
+			transition : "fade"
+		});
+
+		//Show Runs Again
+		$('.original').hide();
+		showRuns();
+
 		//Preventing form from submiting
 		return false;
 	}
