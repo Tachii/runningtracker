@@ -69,21 +69,37 @@ $(document).on("pagecreate", "#home", function() {
 	 * editRun function
 	 */
 	function editRun() {
+		//Get Current Data
+		var currentKms = localStorage.getItem('currentKms');
+		var currentDate = localStorage.getItem('currentDate');
+
+		var runs = getRunsObject();
+		var i = 0;
+		
+		//Loop throuh runs and remove current run from 'runs' object
+		while(i < runs.length){
+			//Remove Current Run
+			if(runs[i].kms == currentKms && runs[i].date == currentDate){
+				runs.splice(i,1);
+			}
+			//Save array without current run
+			localStorage.setItem('runs',JSON.stringify(runs));
+			i++;
+		}
+
 		//Get form values
-		var kms = $('#addKms').val();
-		var date = $('#addDate').val();
+		var kms = $('#editKms').val();
+		var date = $('#editDate').val();
 
 		//Create 'Run' Object
-		var run = {
+		var updated_run = {
 			date : date,
 			kms : parseFloat(kms)
 		};
 
-		var runs = getRunsObject();
-
 		//Add run to runs array
-		runs.push(run);
-		alert('Run Added');
+		runs.push(updated_run);
+		alert('Run Edited');
 
 		//Set stringified objects to localstorage
 		localStorage.setItem('runs', JSON.stringify(runs));
