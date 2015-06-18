@@ -1,4 +1,4 @@
-$(document).on('pageinit', function() {
+$(document).one('pageinit', function() {
 	//Display runs
 	showRuns();
 
@@ -16,7 +16,7 @@ $(document).on('pageinit', function() {
 		if (runs != '' && runs != null) {
 
 			for (i; i < runs.length; i++) {
-				$('#stats').append('<li class="ui-body-inherit ui-li-static"><strong>Date: </strong>' + runs[i]["date"] + '</li>');
+				$('#stats').append('<li class="ui-body-inherit ui-li-static"><strong>Date: </strong>' + runs[i]["date"] + '<strong> <br/>Distnace: </strong>' + runs[i]["kms"] + 'km</li>');
 			}
 
 			$('#home').bind('pageinit', function() {
