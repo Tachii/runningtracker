@@ -1,4 +1,4 @@
-$(document).on('pageinit', function() {
+$(document).on("pagecreate", "#home", function() {
 	//Display runs
 	showRuns();
 
@@ -19,7 +19,10 @@ $(document).on('pageinit', function() {
 				$('#stats').append(
 					'<li class="ui-body-inherit ui-li-static"><strong>Date: </strong>' + runs[i]["date"] + 
 					'<strong> <br/>Distnace: </strong>' + runs[i]["kms"] + 
-					'km<div class="controls"></div></li>'
+					'km<div class="controls">'+
+					'<a href="#edit">Edit</a> | '+
+					'<a href="#delete">Delete</a>'+
+					'</div></li>'
 				);
 			}
 
