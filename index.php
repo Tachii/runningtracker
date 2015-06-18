@@ -12,10 +12,11 @@
 		<script src="js/script.js"></script>
 	</head>
 	<body>
+		<!-- Main Page -->
 		<div data-role="page" id="home">
-			<div data-role="header" data-theme="a">
+			<header data-role="header" data-theme="a">
 				<h1>Running Tracker</h1>
-			</div>
+			</header>
 			<div data-role="navbar">
 				<ul>
 					<li>
@@ -23,7 +24,7 @@
 					</li>
 
 					<li>
-						<a href="#home" data-transition="none" data-icon="plus">Add Run</a>
+						<a href="#add" data-transition="none" data-icon="plus">Add Run</a>
 					</li>
 				</ul>
 			</div>
@@ -37,8 +38,43 @@
 
 				<ul id="stats" data-role="listview" data-filter="true" data-filter-placeholder="Filter runs by date or distance." data-inset="true" ></ul>
 				<br/>
-				<button id="clearRuns" onclick="return confirm('Are You Sure?')">Clear Total</button>
+				<button id="clearRuns" onclick="return confirm('Are You Sure?')">
+					Clear Data
+				</button>
 			</div>
+			<footer data-role="footer">
+				<h4>RunningTracker &copy; 2015 GZ</h4>
+			</footer>
+		</div>
+		<!-- Add Run Page -->
+		<div data-role="page" id="add">
+			<header data-role="header" data-theme="a">
+				<h1>Running Tracker</h1>
+			</header>
+			<div data-role="navbar">
+				<ul>
+					<li>
+						<a href="#home" data-transition="none" data-icon="home">Home</a>
+					</li>
+
+					<li>
+						<a href="#add" data-transition="none" data-icon="plus">Add Run</a>
+					</li>
+				</ul>
+			</div>
+			<div data-role="content">
+				<h3>Add Run</h3>
+				<form id="addForm">
+					<label for="km">Enter Kilometres:</label>
+					<input type="number" id="addKm" >
+					<label for="km">Enter Date:</label>
+					<input type="date" data-role="date" class="date" id="addKm" data-inline="true" >
+					<button id="submitAdd" class="ui-btn ui-corner-all">Add Run</button>
+				</form>
+			</div>
+			<footer data-role="footer">
+				<h4>RunningTracker &copy; 2015 GZ</h4>
+			</footer>
 		</div>
 	</body>
 </html>
