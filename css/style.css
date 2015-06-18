@@ -1,0 +1,11 @@
+body{
+	text-align:center;
+}
+
+ul{
+	display:block;
+}
+
+.controls{
+	float:right;
+}
