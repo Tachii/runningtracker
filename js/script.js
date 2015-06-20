@@ -29,41 +29,45 @@ $(document).on("pagecreate", "#home", function() {
 	 */
 	function addRun() {
 		//Get form values
-		var kms = $('#addKms').val();
-		var date = $('#addDate').val();
+		var addKms = $('#addKms').val();
+		var addDate = $('#addDate').val();
+		if (!null(addKms, addDate)) {
+			var kms = $('#addKms').val();
+			var date = $('#addDate').val();
 
-		//Create 'Run' Object
-		var run = {
-			date : date,
-			kms : parseFloat(kms)
-		};
+			//Create 'Run' Object
+			var run = {
+				date : date,
+				kms : parseFloat(kms)
+			};
 
-		var runs = getRunsObject();
+			var runs = getRunsObject();
 
-		//Add run to runs array
-		runs.push(run);
-		alert('Run Added');
+			//Add run to runs array
+			runs.push(run);
+			alert('Run Added');
 
-		//Set stringified objects to localstorage
-		localStorage.setItem('runs', JSON.stringify(runs));
+			//Set stringified objects to localstorage
+			localStorage.setItem('runs', JSON.stringify(runs));
 
-		//Redirect
-		$("body").pagecontainer("change", "#home", {
-			transition : "fade",
-			reverse : true
-		});
-		
-		$('.original').hide();
-		showRuns();
-		//Event Handlers
-		$('#submitAdd').on('tap', addRun);
-		$('.editLink').on('tap', setCurrent);
-		$('.deleteLink').on('tap', function() {
-			setCurrent.call(this);
-			deleteRun.call(this);
-		});
-		//Preventing form from submiting
-		return false;
+			//Redirect
+			$("body").pagecontainer("change", "#home", {
+				transition : "fade",
+				reverse : true
+			});
+
+			$('.original').hide();
+			showRuns();
+			//Event Handlers
+			$('#submitAdd').on('tap', addRun);
+			$('.editLink').on('tap', setCurrent);
+			$('.deleteLink').on('tap', function() {
+				setCurrent.call(this);
+				deleteRun.call(this);
+			});
+
+		}
+
 	}
 
 	/*
@@ -109,7 +113,7 @@ $(document).on("pagecreate", "#home", function() {
 		$("body").pagecontainer("change", "#edit", {
 			transition : "fade"
 		});
-		
+
 		$('.original').hide();
 		showRuns();
 		//Event Handlers
@@ -145,7 +149,7 @@ $(document).on("pagecreate", "#home", function() {
 			localStorage.setItem('runs', JSON.stringify(runs));
 			i++;
 		}
-		
+
 		$('.original').hide();
 		showRuns();
 		//Event Handlers
