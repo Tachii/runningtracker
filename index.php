@@ -70,7 +70,7 @@
 				<h4>RunningTracker &copy; 2015 GZ</h4>
 			</footer>
 		</div>
-		<!-- Add Edit Page -->
+		<!-- Edit Page -->
 		<div data-role="page" id="edit">
 			<header data-role="header" data-theme="a">
 				<h1>Running Tracker</h1>
@@ -78,7 +78,7 @@
 			<div data-role="navbar">
 				<ul>
 					<li>
-						<a href="#home" data-transition="none" data-icon="home">Home</a>
+						<a href="#home" data-transition="fade" data-icon="home">Home</a>
 					</li>
 				</ul>
 			</div>
@@ -86,7 +86,7 @@
 				<h3>Edit Run</h3>
 				<form id="addForm">
 					<label for="km">Enter Kilometres:</label>
-					<input type="number" id="editKms" >
+					<input type="number" id="editKms">
 					<label for="km">Enter Date:</label>
 					<input type="date" data-role="date" class="date" id="editDate" data-inline="true" >
 					<button id="submitEdit" class="ui-btn ui-corner-all">

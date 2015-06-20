@@ -1,4 +1,13 @@
 $(document).on("pagecreate", "#home", function() {
+
+	showRuns();
+	//Event Handlers
+	$('#submitAdd').on('tap', addRun);
+	$('.editLink').on('tap', setCurrent);
+	$('.deleteLink').on('tap', function() {
+		setCurrent.call(this);
+		deleteRun.call(this);
+	});
 	/*
 	 * Show all runs on homepage
 	 */
@@ -6,11 +15,10 @@ $(document).on("pagecreate", "#home", function() {
 		//get runs Object
 		var runs = getRunsObject();
 		var i = 0;
-
 		if (runs != '' && runs != null) {
 
 			for (i; i < runs.length; i++) {
-				$('#stats').append('<li class="original ui-body-inherit ui-li-static"><strong>Date: </strong>' + runs[i]["date"] + '<strong> <br/>Distnace: </strong>' + runs[i]["kms"] + 'km<div class="controls">' + '<a href="#" id="editLink" data-kms="' + runs[i]["kms"] + '" data-date="' + runs[i]["date"] + '">Edit</a> | ' + '<a href="#" id="deleteLink" data-kms="' + runs[i]["kms"] + '" data-date="' + runs[i]["date"] + '">Delete</a>' + '</div></li>');
+				$('#stats').append('<li class="original ui-body-inherit ui-li-static"><strong>Date: </strong>' + runs[i]["date"] + '<strong> <br/>Distnace: </strong>' + runs[i]["kms"] + 'km<div class="controls">' + '<a href="#edit" data-transition="fade" class="editLink" data-kms="' + runs[i]["kms"] + '" data-date="' + runs[i]["date"] + '">Edit</a> | ' + '<a href="#" class="deleteLink" data-kms="' + runs[i]["kms"] + '" data-date="' + runs[i]["date"] + '">Delete</a>' + '</div></li>');
 			}
 
 		}
@@ -41,13 +49,19 @@ $(document).on("pagecreate", "#home", function() {
 
 		//Redirect
 		$("body").pagecontainer("change", "#home", {
-			transition : "fade"
+			transition : "fade",
+			reverse : true
 		});
-
-		//Show Runs Again
+		
 		$('.original').hide();
 		showRuns();
-
+		//Event Handlers
+		$('#submitAdd').on('tap', addRun);
+		$('.editLink').on('tap', setCurrent);
+		$('.deleteLink').on('tap', function() {
+			setCurrent.call(this);
+			deleteRun.call(this);
+		});
 		//Preventing form from submiting
 		return false;
 	}
@@ -92,14 +106,19 @@ $(document).on("pagecreate", "#home", function() {
 		localStorage.setItem('runs', JSON.stringify(runs));
 
 		//Redirect
-		$("body").pagecontainer("change", "#home", {
+		$("body").pagecontainer("change", "#edit", {
 			transition : "fade"
 		});
-
-		//Show Runs Again
+		
 		$('.original').hide();
 		showRuns();
-
+		//Event Handlers
+		$('#submitAdd').on('tap', addRun);
+		$('.editLink').on('tap', setCurrent);
+		$('.deleteLink').on('tap', function() {
+			setCurrent.call(this);
+			deleteRun.call(this);
+		});
 		//Preventing form from submiting
 		return false;
 	}
@@ -121,18 +140,21 @@ $(document).on("pagecreate", "#home", function() {
 			if (runs[i].kms == currentKms && runs[i].date == currentDate) {
 				runs.splice(i, 1);
 				alert('Run Deleted');
-			} else {
-				alert('Run cant be deleted!');
 			}
 			//Save array without current run
 			localStorage.setItem('runs', JSON.stringify(runs));
 			i++;
 		}
-
-		//Show Runs Again
+		
 		$('.original').hide();
 		showRuns();
-
+		//Event Handlers
+		$('#submitAdd').on('tap', addRun);
+		$('.editLink').on('tap', setCurrent);
+		$('.deleteLink').on('tap', function() {
+			setCurrent.call(this);
+			deleteRun.call(this);
+		});
 		//Preventing form from submiting
 		return false;
 
