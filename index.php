@@ -20,7 +20,7 @@
 			<div data-role="navbar">
 				<ul>
 					<li>
-						<a href="#" id="addRun" data-transition="none" data-icon="plus">Add Run</a>
+						<a href="#add" data-transition="fade" data-icon="plus">Add Run</a>
 					</li>
 				</ul>
 			</div>
@@ -50,7 +50,7 @@
 			<div data-role="navbar">
 				<ul>
 					<li>
-						<a href="#" id="#home" data-transition="none" data-icon="home">Home</a>
+						<a href="#home" data-transition="fade" data-icon="home">Home</a>
 					</li>
 				</ul>
 			</div>

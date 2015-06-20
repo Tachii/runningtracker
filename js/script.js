@@ -1,30 +1,4 @@
 $(document).on("pagecreate", "#home", function() {
-	//Redirections
-	$('#addRun').on("tap", redirectAdd);
-	$('#home').on("tap", redirectHome);
-	$('#editRun').on("tap", redirectEdit);
-
-	//Function to Redirect to home page
-	function redirectHome() {
-		$("body").pagecontainer("change", "#home", {
-			transition : "fade"
-		});
-	}
-
-	//Function to Redirect to add page
-	function redirectAdd() {
-		$("body").pagecontainer("change", "#add", {
-			transition : "fade"
-		});
-	}
-
-	//Function to Redirect to edit page
-	function redirectEdit() {
-		$("body").pagecontainer("change", "#edit", {
-			transition : "fade"
-		});
-	}
-
 	/*
 	 * Show all runs on homepage
 	 */
