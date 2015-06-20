@@ -1,8 +1,8 @@
 $(document).on("pagecreate", "#home", function() {
-
 	showRuns();
 	//Event Handlers
 	$('#submitAdd').on('tap', addRun);
+	$('#submitEdit').on('tap', editRun);
 	$('.editLink').on('tap', setCurrent);
 	$('.deleteLink').on('tap', function() {
 		setCurrent.call(this);
@@ -65,6 +65,7 @@ $(document).on("pagecreate", "#home", function() {
 				setCurrent.call(this);
 				deleteRun.call(this);
 			});
+			return false;
 
 		}
 
@@ -110,7 +111,7 @@ $(document).on("pagecreate", "#home", function() {
 		localStorage.setItem('runs', JSON.stringify(runs));
 
 		//Redirect
-		$("body").pagecontainer("change", "#edit", {
+		$("body").pagecontainer("change", "#home", {
 			transition : "fade"
 		});
 
@@ -123,7 +124,6 @@ $(document).on("pagecreate", "#home", function() {
 			setCurrent.call(this);
 			deleteRun.call(this);
 		});
-		//Preventing form from submiting
 		return false;
 	}
 
