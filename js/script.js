@@ -78,7 +78,11 @@ $(document).on("pagecreate", "#home", function() {
 		var currentKms = localStorage.getItem('currentKms');
 		var currentDate = localStorage.getItem('currentDate');
 
-		if (!(currentKms == null || kms == "") && !(currentDate == null || date == "")) {
+		//Validation
+		var kms = $('#editKms').val();
+		var date = $('#editDate').val();
+
+		if (!(kms == null || kms == "") && !(date == null || date == "")) {
 			var runs = getRunsObject();
 			var i = 0;
 			//Loop throuh runs and remove current run from 'runs' object
