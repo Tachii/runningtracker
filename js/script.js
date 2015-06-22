@@ -1,16 +1,18 @@
 $(document).on("pagecreate", "#home", function() {
 	showRuns();
-	//Event Handlers
 	$('#submitAdd').on('tap', addRun);
 	$('#submitEdit').on('tap', editRun);
-	$('.editLink').on('tap', setCurrent);
-	$('.deleteLink').on('tap', function() {
+	//Using Event Deligation
+	$(document).on('tap', '.editLink', setCurrent);
+
+	$(document).on('tap', '.deleteLink', function() {
 		var confirmation = confirm("Are you sure?");
-		if (confirmation == true) {
+		if (confirmation) {
 			setCurrent.call(this);
 			deleteRun.call(this);
 		}
 	});
+	$('#clearRuns').on('tap', clearAll);
 	/*
 	 * Show all runs on homepage
 	 */
@@ -21,7 +23,9 @@ $(document).on("pagecreate", "#home", function() {
 		if (runs != '' && runs != null) {
 
 			for (i; i < runs.length; i++) {
-				$('#stats').append('<li class="original ui-body-inherit ui-li-static"><strong>Date: </strong>' + runs[i]["date"] + '<strong> <br/>Distnace: </strong>' + runs[i]["kms"] + 'km<div class="controls">' + '<a href="#edit" data-transition="fade" class="editLink" data-kms="' + runs[i]["kms"] + '" data-date="' + runs[i]["date"] + '">Edit</a> | ' + '<a href="#" class="deleteLink" data-kms="' + runs[i]["kms"] + '" data-date="' + runs[i]["date"] + '">Delete</a>' + '</div></li>');
+
+				$('#stats').append('<li class="entry original ui-body-inherit ui-li-static"><strong>Date: </strong>' + runs[i]["date"] + '<strong> <br/>Distnace: </strong>' + runs[i]["kms"] + 'km<div class="controls">' + '<a href="#edit" data-transition="fade" class="editLink" data-kms="' + runs[i]["kms"] + '" data-date="' + runs[i]["date"] + '">Edit</a> | ' + '<a href="#" class="deleteLink" data-kms="' + runs[i]["kms"] + '" data-date="' + runs[i]["date"] + '">Delete</a>' + '</div></li>');
+
 			}
 
 		}
@@ -60,18 +64,8 @@ $(document).on("pagecreate", "#home", function() {
 				transition : "fade",
 				reverse : true
 			});
-
 			$('.original').hide();
 			showRuns();
-			//Event Handlers
-			$('.editLink').on('tap', setCurrent);
-			$('.deleteLink').on('tap', function() {
-				var confirmation = confirm("Are you sure?");
-				if (confirmation == true) {
-					setCurrent.call(this);
-					deleteRun.call(this);
-				}
-			});
 			return false;
 		}
 	}
@@ -126,16 +120,6 @@ $(document).on("pagecreate", "#home", function() {
 
 			$('.original').hide();
 			showRuns();
-			//Event Handlers
-			$('#submitAdd').on('tap', addRun);
-			$('.editLink').on('tap', setCurrent);
-			$('.deleteLink').on('tap', function() {
-				var confirmation = confirm("Are you sure?");
-				if (confirmation == true) {
-					setCurrent.call(this);
-					deleteRun.call(this);
-				}
-			});
 			return false;
 		}
 	}
@@ -165,13 +149,6 @@ $(document).on("pagecreate", "#home", function() {
 
 		$('.original').hide();
 		showRuns();
-		//Event Handlers
-		$('#submitAdd').on('tap', addRun);
-		$('.editLink').on('tap', setCurrent);
-		$('.deleteLink').on('tap', function() {
-			setCurrent.call(this);
-			deleteRun.call(this);
-		});
 		//Preventing form from submiting
 		return false;
 
@@ -214,6 +191,14 @@ $(document).on("pagecreate", "#home", function() {
 		//Insert data into edit form
 		$('#editKms').val(kms);
 		$('#editDate').val(date);
+	}
+
+	/*
+	 * Clear All Runs from localStorage
+	 */
+	function clearAll() {
+		localStorage.removeItem('runs');
+		$('.original').hide();
 	}
 
 });
