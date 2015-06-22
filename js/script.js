@@ -40,11 +40,11 @@ $(document).on("pagecreate", "#home", function() {
 			};
 
 			var runs = getRunsObject();
-			
+
 			//Clear Inputs
 			$('#addKms').val("");
 			$('#addDate').val("");
-			
+
 			//Add run to runs array
 			runs.push(run);
 			alert('Run Added');
@@ -78,52 +78,53 @@ $(document).on("pagecreate", "#home", function() {
 		var currentKms = localStorage.getItem('currentKms');
 		var currentDate = localStorage.getItem('currentDate');
 
-		var runs = getRunsObject();
-		var i = 0;
-
-		//Loop throuh runs and remove current run from 'runs' object
-		while (i < runs.length) {
-			//Remove Current Run
-			if (runs[i].kms == currentKms && runs[i].date == currentDate) {
-				runs.splice(i, 1);
+		if (!(currentKms == null || kms == "") && !(currentDate == null || date == "")) {
+			var runs = getRunsObject();
+			var i = 0;
+			//Loop throuh runs and remove current run from 'runs' object
+			while (i < runs.length) {
+				//Remove Current Run
+				if (runs[i].kms == currentKms && runs[i].date == currentDate) {
+					runs.splice(i, 1);
+				}
+				//Save array without current run
+				localStorage.setItem('runs', JSON.stringify(runs));
+				i++;
 			}
-			//Save array without current run
+
+			//Get form values
+			var kms = $('#editKms').val();
+			var date = $('#editDate').val();
+
+			//Create 'Run' Object
+			var updated_run = {
+				date : date,
+				kms : parseFloat(kms)
+			};
+
+			//Add run to runs array
+			runs.push(updated_run);
+			alert('Run Edited');
+
+			//Set stringified objects to localstorage
 			localStorage.setItem('runs', JSON.stringify(runs));
-			i++;
+
+			//Redirect
+			$("body").pagecontainer("change", "#home", {
+				transition : "fade"
+			});
+
+			$('.original').hide();
+			showRuns();
+			//Event Handlers
+			$('#submitAdd').on('tap', addRun);
+			$('.editLink').on('tap', setCurrent);
+			$('.deleteLink').on('tap', function() {
+				setCurrent.call(this);
+				deleteRun.call(this);
+			});
+			return false;
 		}
-
-		//Get form values
-		var kms = $('#editKms').val();
-		var date = $('#editDate').val();
-
-		//Create 'Run' Object
-		var updated_run = {
-			date : date,
-			kms : parseFloat(kms)
-		};
-
-		//Add run to runs array
-		runs.push(updated_run);
-		alert('Run Edited');
-
-		//Set stringified objects to localstorage
-		localStorage.setItem('runs', JSON.stringify(runs));
-
-		//Redirect
-		$("body").pagecontainer("change", "#home", {
-			transition : "fade"
-		});
-
-		$('.original').hide();
-		showRuns();
-		//Event Handlers
-		$('#submitAdd').on('tap', addRun);
-		$('.editLink').on('tap', setCurrent);
-		$('.deleteLink').on('tap', function() {
-			setCurrent.call(this);
-			deleteRun.call(this);
-		});
-		return false;
 	}
 
 	/*
