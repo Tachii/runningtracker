@@ -32,9 +32,6 @@ $(document).on("pagecreate", "#home", function() {
 		var kms = $('#addKms').val();
 		var date = $('#addDate').val();
 
-		console.log(kms);
-		console.log(date);
-
 		if (!(kms == null || kms == "") && !(date == null || date == "")) {
 			//Create 'Run' Object
 			var run = {
