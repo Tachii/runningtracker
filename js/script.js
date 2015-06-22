@@ -5,8 +5,11 @@ $(document).on("pagecreate", "#home", function() {
 	$('#submitEdit').on('tap', editRun);
 	$('.editLink').on('tap', setCurrent);
 	$('.deleteLink').on('tap', function() {
-		setCurrent.call(this);
-		deleteRun.call(this);
+		var confirmation = confirm("Are you sure?");
+		if (confirmation == true) {
+			setCurrent.call(this);
+			deleteRun.call(this);
+		}
 	});
 	/*
 	 * Show all runs on homepage
@@ -63,8 +66,11 @@ $(document).on("pagecreate", "#home", function() {
 			//Event Handlers
 			$('.editLink').on('tap', setCurrent);
 			$('.deleteLink').on('tap', function() {
-				setCurrent.call(this);
-				deleteRun.call(this);
+				var confirmation = confirm("Are you sure?");
+				if (confirmation == true) {
+					setCurrent.call(this);
+					deleteRun.call(this);
+				}
 			});
 			return false;
 		}
@@ -124,8 +130,11 @@ $(document).on("pagecreate", "#home", function() {
 			$('#submitAdd').on('tap', addRun);
 			$('.editLink').on('tap', setCurrent);
 			$('.deleteLink').on('tap', function() {
-				setCurrent.call(this);
-				deleteRun.call(this);
+				var confirmation = confirm("Are you sure?");
+				if (confirmation == true) {
+					setCurrent.call(this);
+					deleteRun.call(this);
+				}
 			});
 			return false;
 		}
