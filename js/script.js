@@ -29,12 +29,13 @@ $(document).on("pagecreate", "#home", function() {
 	 */
 	function addRun() {
 		//Get form values
-		var addKms = $('#addKms').val();
-		var addDate = $('#addDate').val();
-		if (!null(addKms, addDate)) {
-			var kms = $('#addKms').val();
-			var date = $('#addDate').val();
+		var kms = $('#addKms').val();
+		var date = $('#addDate').val();
 
+		console.log(kms);
+		console.log(date);
+
+		if (!(kms == null || kms == "") && !(date == null || date == "")) {
 			//Create 'Run' Object
 			var run = {
 				date : date,
@@ -42,7 +43,11 @@ $(document).on("pagecreate", "#home", function() {
 			};
 
 			var runs = getRunsObject();
-
+			
+			//Clear Inputs
+			$('#addKms').val("");
+			$('#addDate').val("");
+			
 			//Add run to runs array
 			runs.push(run);
 			alert('Run Added');
@@ -59,16 +64,13 @@ $(document).on("pagecreate", "#home", function() {
 			$('.original').hide();
 			showRuns();
 			//Event Handlers
-			$('#submitAdd').on('tap', addRun);
 			$('.editLink').on('tap', setCurrent);
 			$('.deleteLink').on('tap', function() {
 				setCurrent.call(this);
 				deleteRun.call(this);
 			});
 			return false;
-
 		}
-
 	}
 
 	/*
